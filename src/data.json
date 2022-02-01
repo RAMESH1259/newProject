@@ -2,27 +2,74 @@
     "data": [
         {
             "name": "Ramesh kumar",
-            "image": "https://source.unsplash.com/user/c_v_r/1900x800"
+            "image": "https://source.unsplash.com/user/c_v_r/1900x800",
+            "type":"natural",
+            "status":"inActive",
+            "assign":"Gautam_Sir"
+        },
+        {
+            "name": "Ramesh kumar",
+            "image": "https://source.unsplash.com/user/c_v_r/1900x800",
+            "type":"natural",
+            "status":"inActive",
+            "assign":"Gautam_Sir"
+        },
+        {
+            "name": "Ramesh kumar",
+            "image": "https://source.unsplash.com/user/c_v_r/1900x800",
+            "type":"natural",
+            "status":"inActive",
+            "assign":"Gautam_Sir"
+        },
+        {
+            "name": "Ramesh kumar",
+            "image": "https://source.unsplash.com/user/c_v_r/1900x800",
+            "type":"natural",
+            "status":"inActive",
+            "assign":"Gautam_Sir"
+        },
+        {
+            "name": "Ramesh kumar",
+            "image": "https://source.unsplash.com/user/c_v_r/1900x800",
+            "type":"natural",
+            "status":"inActive",
+            "assign":"Gautam_Sir"
         },
         {
             "name": "Rahul yadav",
-            "image": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"
+            "image": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80",
+            "type":"artificial",
+            "status":"inActive",
+            "assign":"Gautam_Sir"
         },
         {
             "name": "vivek rao",
-            "image": "//images.ctfassets.net/yadj1kx9rmg0/wtrHxeu3zEoEce2MokCSi/cf6f68efdcf625fdc060607df0f3baef/quwowooybuqbl6ntboz3.jpg"
+            "image": "//images.ctfassets.net/yadj1kx9rmg0/wtrHxeu3zEoEce2MokCSi/cf6f68efdcf625fdc060607df0f3baef/quwowooybuqbl6ntboz3.jpg",
+            "type":"natural",
+            "status":"active",
+            "assign":"Gautam_Sir"
+
         },
         {
             "name": "nitish",
-            "image": "https://source.unsplash.com/user/c_v_r/1900x800"
+            "image": "https://source.unsplash.com/user/c_v_r/1900x800",
+            "type":"artificial",
+            "status":"inActive",
+            "assign":"Amit_Sir"
         },
         {
             "name": "raghav",
-            "image": "https://picsum.photos/200/300"
+            "image": "https://picsum.photos/200/300",
+            "type":"man_made",
+            "status":"active",
+            "assign":"Amit_Sir"
         },
         {
             "name": "Gautam Sir",
-            "image": "https://picsum.photos/200/300"
+            "image": "https://picsum.photos/200/300",
+            "type":"man_made",
+            "status":"inActive",
+            "assign":"Amit_Sir"
         }
     ]
 }
