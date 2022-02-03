@@ -21,12 +21,11 @@ const reducer = (state, action) => {
   }
 };
 
-const useLazyLoad = ({ triggerRef, onGrabData, filters, options }) => {
+const useLazyLoad = ({ triggerRef, onGrabData, options }) => {
   const [state, dispatch] = useReducer(reducer, {
     loading: false,
     data: [],
   });
-
 
   // const [loading, setLoading] = useState(false);
   // const [data, setData] = useState([]);

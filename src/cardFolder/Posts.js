@@ -3,29 +3,69 @@ import clsx from "clsx";
 import useLazyLoad from "./useLazyLoad";
 import { Card } from "./Card";
 import { LoadingPosts } from "./LoadingPosts";
-import posts from "./data.json";
+import posts from "../data.json";
 import { Form } from "react-bootstrap";
+import { useDrop } from "react-dnd";
 
 export const Posts = () => {
   const images = posts?.data;
   const triggerRef = useRef(null);
   const [filters, setFilters] = useState([]);
+  const [flag, setFlag] = useState(true);
   const [paginatedData, setPaginatedData] = useState([]);
+  const [board, setBoard] = useState([
+    {
+      id: 7,
+      image: "https://source.unsplash.com/user/c_v_r/1900x800",
+      name: "Dummy data",
+      type: "natural",
+      status: "inActive",
+      assign: "Gautam_Sir",
+    },
+  ]);
+
+  const [{ isOver }, drop] = useDrop(
+    () => ({
+      accept: "image",
+      drop: (item) => {
+        addImageBoard(item.id, true);
+      },
+      collect: (monitor) => ({
+        isOver: !!monitor.isOver(),
+      }),
+    }),
+    [paginatedData]
+  );
+
+  const [{ isOver1 }, drop2] = useDrop(
+    () => ({
+      accept: "image",
+      drop: (item) => {
+        addImageBoard(item.id, false);
+      },
+      collect: (monitor) => ({
+        isOver: !!monitor.isOver(),
+      }),
+    }),
+    [board]
+  );
 
   const onGrabData = () => {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(images);
-      }, 3000);
+      }, 0);
     });
   };
+
   const handleSelectFilter = (e) => {
     const { name, value } = e.target;
     setFilters((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  const { data, loading } = useLazyLoad({ triggerRef, onGrabData, filters });
 
+  
   useEffect(() => {
+    // if (filters) {
     const result = Object.values(filters);
     const result12 = Object.keys(filters);
     let temp = data;
@@ -38,12 +78,33 @@ export const Posts = () => {
       );
     }
     setPaginatedData(temp);
+    // }
   }, [filters]);
 
+  const { data, loading } = useLazyLoad({ triggerRef, onGrabData });
+
   useEffect(() => {
-    setPaginatedData(data);
-    setFilters("");
+    if (data && data.length) {
+      setPaginatedData(data);
+      // setFilters("");    v
+    }
   }, [data && data.length]);
+
+  
+  const addImageBoard = (id, flag1) => {
+    debugger;
+    if (flag1) {
+      const Pictures = paginatedData.filter((picture) => id == picture.id);
+      setBoard((board) => [...board, Pictures[0]]);
+      const remaining = paginatedData.filter((el) => id != el.id);
+      setPaginatedData(remaining);
+    } else {
+      const Pictures = board.filter((picture) => id == picture.id);
+      setPaginatedData((paginatedData) => [...paginatedData, Pictures[0]]);
+      const remaining = board.filter((el) => id != el.id);
+      setBoard(remaining);
+    }
+  };
 
   return (
     <>
@@ -102,10 +163,40 @@ export const Posts = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-3 gap-4 content-start">
-        {paginatedData.map((el) => {
-          return <Card name={el?.name} image={el?.image} />;
-        })}
+      <div className="row d-flex justify-content-between ">
+        <div className="col-md-5 ">
+          <div
+            className="grid grid-cols-3 gap-4 content-start"
+            ref={drop2}
+          >
+            {paginatedData.map((el) => {
+              return (
+                <Card
+                  image={el?.image}
+                  name={el?.name}
+                  id={el.id}
+                  paginatedData={paginatedData}
+                  flag={flag}
+                />
+              );
+            })}
+          </div>
+        </div>
+        <div className="col-md-5">
+          <div className="grid grid-cols-3 gap-4 content-start" ref={drop}>
+            {board.map((el) => {
+              return (
+                <Card
+                  image={el?.image}
+                  id={el?.id}
+                  name={el?.name}
+                  paginatedData={board}
+                  flag={!flag}
+                />
+              );
+            })}
+          </div>
+        </div>
       </div>
       {/* loading post */}
       <div ref={triggerRef} className={clsx("trigger", { visible: loading })}>
